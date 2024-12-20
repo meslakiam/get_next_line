@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:28:11 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/20 12:21:21 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:17:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,39 +101,3 @@ char	*get_next_line(int fd)
 	buffer = trash(buffer);
 	return (line);
 }
-
-// int main()
-// {
-//     int i;
-//     char *s;
-
-//     int fd = open("myfile",O_RDWR | O_CREAT,0666);
-//     // int fd1 = open("myfile1.txt",O_RDWR | O_CREAT,0666);
-//     // int fd2 = open("myfile2.txt",O_RDWR | O_CREAT,0666);
-//         i = 65;
-//         while(i > 0)
-//         {
-//             s = get_next_line(fd);
-//             printf("%s",s);
-//             i--;
-//             free(s);
-//         }
-// 	// s = get_next_line(fd);
-//     // printf("%s",s);
-//     // free(s);
-//     // s = get_next_line(fd1);
-//     // printf("%s",s);
-//     // free(s);
-//     // s = get_next_line(fd2);
-//     // printf("%s",s);
-//     // free(s);
-// 	// s = get_next_line(fd);
-//     // printf("%s",s);
-//     // free(s);
-//     // s = get_next_line(fd1);
-//     // printf("%s",s);
-//     // free(s);
-// 	// s = get_next_line(fd2);
-//     // printf("%s",s);
-//     // free(s);
-// }

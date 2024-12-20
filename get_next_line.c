@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:28:11 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/20 15:17:35 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/20 21:26:11 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*extract_line(char *buffer)
 	size_t	i;
 
 	i = 0;
-	if (buffer == NULL)
+	if (buffer[i] == '\0' || buffer == NULL)
 		return (NULL);
 	while (buffer[i] != '\n' && buffer[i] != '\0')
 		i++;
@@ -94,10 +94,14 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || write(fd,0,0) == -1)
 		return (NULL);
 	buffer = reader(buffer, fd);
+	if (buffer == NULL)
+		return (NULL);
 	line = extract_line(buffer);
+	if (line == NULL)
+		return (NULL);
 	buffer = trash(buffer);
 	return (line);
 }

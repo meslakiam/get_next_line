@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:59:18 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/20 11:44:38 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:54:40 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ char	*ft_join(char *s1, char *s2)
 	if (join == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		join[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j])
+	while (s2 && s2[j])
 	{
 		join[i] = s2[j];
 		i++;

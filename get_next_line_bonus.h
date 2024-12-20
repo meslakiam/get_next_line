@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 10:55:26 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/20 12:17:31 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:41:53 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
+# endif
+
+# ifndef FD_SETSIZE
+#  define FD_SETSIZE 1024
 # endif
 
 # include <fcntl.h>

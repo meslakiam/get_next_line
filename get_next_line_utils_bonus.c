@@ -56,13 +56,13 @@ char	*ft_join(char *s1, char *s2)
 	if (join == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		join[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j])
+	while (s2 && s2[j])
 	{
 		join[i] = s2[j];
 		i++;

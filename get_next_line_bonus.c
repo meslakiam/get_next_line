@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 10:56:23 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/20 21:26:34 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:25:28 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*reader(char *buffer, int fd)
 	while (b != 0)
 	{
 		b = read(fd, tmp, BUFFER_SIZE);
+		if (b == -1)
+			return (free(tmp), NULL);
 		tmp[b] = '\0';
 		store_buffer = ft_join(buffer, tmp);
 		free(buffer);
@@ -44,8 +46,9 @@ char	*extract_line(char *buffer)
 	char	*line;
 	size_t	i;
 
+	line = NULL;
 	i = 0;
-	if (buffer[i] == '\0' || buffer == NULL)
+	if (buffer == NULL || buffer[0] == '\0')
 		return (NULL);
 	while (buffer[i] != '\n' && buffer[i] != '\0')
 		i++;
@@ -70,17 +73,17 @@ char	*trash(char *buffer)
 	ssize_t	i;
 
 	i = 0;
-	if (buffer == NULL)
+	if (buffer == NULL || buffer[0] == '\0')
 		return (NULL);
-	if (ft_strchr(buffer))
+	if (ft_strchr(buffer) == 1)
 	{
 		while (buffer[i] != '\n')
 			i++;
-		if (buffer[i])
+		if (buffer[i] != '\0')
 			tmp = ft_strdup(&(buffer[++i]));
 		free(buffer);
 	}
-	else if (!ft_strchr(buffer))
+	else if (ft_strchr(buffer) == 0)
 	{
 		free(buffer);
 		tmp = NULL;
@@ -94,10 +97,14 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_SETSIZE || write(fd, 0, 0) == -1)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_SETSIZE)
 		return (NULL);
 	buffer[fd] = reader(buffer[fd], fd);
+	if (buffer == NULL)
+		return (NULL);
 	line = extract_line(buffer[fd]);
+	if (line == NULL)
+		return (NULL);
 	buffer[fd] = trash(buffer[fd]);
 	return (line);
 }

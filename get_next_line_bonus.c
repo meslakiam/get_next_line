@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 10:56:23 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/24 12:25:28 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/25 09:42:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*reader(char *buffer, int fd)
 	ssize_t	b;
 
 	b = 1;
-	tmp = malloc(BUFFER_SIZE + 1);
+	tmp = malloc((size_t)BUFFER_SIZE + 1);
 	if (!tmp)
 		return (NULL);
 	while (b != 0)
@@ -72,6 +72,7 @@ char	*trash(char *buffer)
 	char	*tmp;
 	ssize_t	i;
 
+	tmp = NULL;
 	i = 0;
 	if (buffer == NULL || buffer[0] == '\0')
 		return (NULL);
@@ -100,7 +101,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_SETSIZE)
 		return (NULL);
 	buffer[fd] = reader(buffer[fd], fd);
-	if (buffer == NULL)
+	if (buffer[fd] == NULL)
 		return (NULL);
 	line = extract_line(buffer[fd]);
 	if (line == NULL)

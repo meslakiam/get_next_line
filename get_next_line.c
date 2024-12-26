@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:28:11 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/24 12:23:46 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:46:22 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*trash(char *buffer)
 	char	*tmp;
 	ssize_t	i;
 
+	tmp = NULL;
 	i = 0;
 	if (buffer == NULL || buffer[0] == '\0')
 		return (NULL);

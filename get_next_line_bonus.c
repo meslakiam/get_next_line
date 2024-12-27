@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 10:56:23 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/26 14:46:07 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:33:30 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ char	*reader(char *buffer, int fd)
 	ssize_t	b;
 
 	b = 1;
-	tmp = malloc(BUFFER_SIZE + 1);
+	tmp = malloc((size_t)BUFFER_SIZE + 1);
 	if (!tmp)
 		return (NULL);
 	while (b != 0)
 	{
 		b = read(fd, tmp, BUFFER_SIZE);
 		if (b == -1)
-			return (free(tmp), NULL);
+			return (free(buffer), free(tmp), NULL);
 		tmp[b] = '\0';
 		store_buffer = ft_join(buffer, tmp);
 		free(buffer);
@@ -98,11 +98,15 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_SETSIZE)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= FD_SETSIZE)
 		return (NULL);
 	buffer[fd] = reader(buffer[fd], fd);
-	if (buffer[fd] == NULL)
+	if (buffer[fd] == NULL || *buffer[fd] == '\0')
+	{
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
+	}
 	line = extract_line(buffer[fd]);
 	if (line == NULL)
 		return (NULL);

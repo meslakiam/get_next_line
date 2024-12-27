@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 10:56:23 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/27 12:33:30 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:00:05 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,11 @@ char	*get_next_line(int fd)
 	}
 	line = extract_line(buffer[fd]);
 	if (line == NULL)
+	{
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
+	}
 	buffer[fd] = trash(buffer[fd]);
 	return (line);
 }

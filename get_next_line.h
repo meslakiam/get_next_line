@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:29:10 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/23 17:07:53 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:58:46 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int		ft_strchr(char *str);
 char	*ft_join(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 size_t	ft_strlen(char *str);
-void	*ft_malloc(size_t size);
 
 #endif

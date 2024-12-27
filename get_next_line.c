@@ -6,7 +6,7 @@
 /*   By: imeslaki <imeslaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:28:11 by imeslaki          #+#    #+#             */
-/*   Updated: 2024/12/27 12:17:26 by imeslaki         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:58:35 by imeslaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,37 +102,18 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buffer = reader(buffer, fd);
 	if (buffer == NULL)
+	{
+		free(buffer);
+		buffer = NULL;
 		return (NULL);
+	}
 	line = extract_line(buffer);
 	if (line == NULL)
+	{
+		free(buffer);
+		buffer = NULL;
 		return (NULL);
+	}
 	buffer = trash(buffer);
 	return (line);
-}
-char *in(int fd)
-{
-	static char *s;
-	char f[10];
-	// int i = 3;
-	// s = &i;
-printf("[%s]\n",s);
-	read(fd,f,10);
-	 s = f;
-	return s;
-}
-
-char	*get_s_data(int fd)
-{
-	static char		s_rest[1025][BUFFER_SIZE + 1];
-
-	if (fd >= 0 && fd <= 1024)
-		return s_rest[fd];
-	return (NULL);
-}
-int main()
-{
-	/*int fd = open("myfile.txt", O_CREAT | O_RDONLY);
-	printf("{%s}\n",in(fd));
-	printf("{%s}\n",in(fd));
-	return 0;*/
 }

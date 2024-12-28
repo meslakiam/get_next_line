@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= FD_SETSIZE)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_SETSIZE)
 		return (NULL);
 	buffer[fd] = reader(buffer[fd], fd);
 	if (buffer[fd] == NULL || *buffer[fd] == '\0')

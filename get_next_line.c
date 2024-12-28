@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free(buffer), NULL);
 	buffer = reader(buffer, fd);
 	if (buffer == NULL)
 	{
